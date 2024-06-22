@@ -3,7 +3,7 @@
   metadata:
     name: todo-ui-deployment
   spec: 
-    replicas: 3
+    replicas: 1
     selector: 
       matchExpressions: 
       - key: app
@@ -20,7 +20,10 @@
           app : todo-ui
       spec: 
         containers: 
-        - image: subho9407/todo-ui
+        - image: yugyogeshpawar/micro-todo-latest:v2
           name: todo-ui-container
+          env:
+          - name: CONNECTION_STRING
+            value: "Driver={ODBC Driver 17 for SQL Server};Server=tcp:subhojit-dbserver.database.windows.net,1433;Database=subbhojit-db;Uid=adminuser;Pwd=GQ4C9q`p[9A£;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;"
           ports: 
           - containerPort: 80
